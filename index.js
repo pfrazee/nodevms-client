@@ -39,8 +39,8 @@ async function runHandshake (client) {
     })
 
     // call handshake() and populate the client
-    this.backendInfo = await client[RPC_CLIENT].call('handshake')
-    this.backendInfo.methods.forEach(methodName => {
+    client.backendInfo = await client[RPC_CLIENT].call('handshake')
+    client.backendInfo.methods.forEach(methodName => {
       addRPCMethod(client, methodName)
     })
 
