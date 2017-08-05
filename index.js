@@ -9,6 +9,7 @@ class NodeVMSClient extends EventEmitter {
   constructor (url, opts) {
     super()
     this.url = url
+    this.backendInfo = null
     this[RPC_OPTS] = opts || {}
     if (opts && opts.user) {
       url += '?user=' + opts.user
@@ -38,8 +39,8 @@ async function runHandshake (client) {
     })
 
     // call handshake() and populate the client
-    var backendInfo = await client[RPC_CLIENT].call('handshake')
-    backendInfo.methods.forEach(methodName => {
+    this.backendInfo = await client[RPC_CLIENT].call('handshake')
+    this.backendInfo.methods.forEach(methodName => {
       addRPCMethod(client, methodName)
     })
 
