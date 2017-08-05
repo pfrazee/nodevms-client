@@ -18,6 +18,7 @@ rpc.on('ready', async () => {
 
 // opts:
 var rpc = new NodeVMSClient('ws://localhost:5555', {
-  timeout: Number, ms (default 5000)
+  timeout: Number, ms (default 5000),
+  user: String, the user to authenticate as (default null)
 })
 ```

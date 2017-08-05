@@ -10,6 +10,9 @@ class NodeVMSClient extends EventEmitter {
     super()
     this.url = url
     this[RPC_OPTS] = opts || {}
+    if (opts && opts.user) {
+      url += '?user=' + opts.user
+    }
     var rpcClient = this[RPC_CLIENT] = new WebSocketClient(url)
     runHandshake(this)
 
